@@ -20,7 +20,14 @@ export default createContentLoader('../**/*.md', {
               .pop()                      // 获取最后一段
               .replace(/\.\w+$/, ''),  
             url: `/blob${page.url}`,
-            date: page.frontmatter.date  // 添加日期信息
+            date: (() => {
+              try {
+                const d = new Date(page.frontmatter.date)
+                return `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`
+              } catch {
+                return String(page.frontmatter.date || '').substring(0, 10)
+              }
+            })()
           })
           tagMap.set(tag, entry)
         })

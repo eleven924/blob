@@ -1,3 +1,8 @@
+---
+title: "gitlab runner安装"
+tags: ["gitlab"]
+date: 2024-07-05
+---
 ## gitlab runner 简介
 GitLab Runner 是 GitLab CI 的执行器，用于执行构建、测试和其他任务。它可以在不同的平台上运行，并且可以与 GitLab 进行通信以获取作业并将其传递给执行器进行处理。
 

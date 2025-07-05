@@ -8,7 +8,6 @@
 
 /* 单个标签项 */
 .tag-item {
-    width: 300px; /* 新增固定宽度 */
     min-height: 80px; /* 最小高度保持统一 */
     padding: 12px 16px;
     background: var(--vp-c-bg);
@@ -53,4 +52,26 @@
 
 .post-link:hover {
   color: var(--vp-c-brand);
+}
+
+/* 归档列表 */
+.archive-list {
+margin-top: 2rem;
+}
+
+.month-title {
+    color: var(--vp-c-brand);
+    border-bottom: 2px solid var(--vp-c-divider);
+    padding-bottom: 0.5rem;
+    margin: 2rem 0 1rem;
+}
+
+.archive-item {
+    margin-bottom: 3rem;
+}
+
+.tag-item-for-archives {
+  border: 1px solid var(--vp-c-brand);
+  border-radius: 20px;
+  transition: all 0.2s ease;
 }

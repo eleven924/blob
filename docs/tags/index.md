@@ -7,7 +7,7 @@ title: 标签总览
 import { data } from '../.vitepress/data/tags.data.js'
 </script>   
 
-<div class="tag-cloud" style="display: flex; gap: 40px">
+<div class="tag-cloud" style="display: flex; gap: 20px; flex-direction: column; row-gap: 20px;">
   <div  
     v-for="tag in data" 
     class="tag-item"
@@ -17,8 +17,10 @@ import { data } from '../.vitepress/data/tags.data.js'
         <div 
           v-for="post in tag.posts" 
           :key="post.url" 
-          class="post-item">
+          class="post-item"
+          style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <a :href="post.url" class="post-link">{{ post.title }}</a>
+          <span style="color: #666; font-size: 0.9em;">{{ post.date }}</span>
         </div>
     </div>
   </div> 

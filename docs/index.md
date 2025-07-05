@@ -24,7 +24,7 @@ features:
     details: 操作系统相关笔记
     link: /os
   - title: kubernetes
-    details: kubernet学习笔记
+    details: kubernetes 学习笔记
     link: /kubernetes
   - title: others
     details: 杂项笔记

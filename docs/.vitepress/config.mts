@@ -5,6 +5,10 @@ export default defineConfig({
   title: "ElevenNote",
   description: "A notebook",
   themeConfig: {
+    footer: {
+      message: '本博客内容采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名 4.0 国际许可协议</a> 进行许可。',
+      copyright: '<div style="text-align: center; margin-top: 8px;">Copyright © 2025-present <a href="">eleven</a></div>'
+    },
     outline: [2,6],
     search: {
       provider: 'local'
@@ -17,7 +21,8 @@ export default defineConfig({
     // ],
     nav: [
       // ... existing nav items ...
-      { text: '标签', link: '/tags' }
+      { text: '标签', link: '/tags' },
+      { text: '归档', link: '/archives' }
     ],
     sidebar: {
       "/golang/":[
