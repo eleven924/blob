@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/blob/',
@@ -16,7 +15,10 @@ export default defineConfig({
     //   { text: 'Home', link: '/' },
     //   // { text: 'Examples', link: '/markdown-examples' }
     // ],
-
+    nav: [
+      // ... existing nav items ...
+      { text: '标签', link: '/tags' }
+    ],
     sidebar: {
       "/golang/":[
       {
@@ -49,7 +51,8 @@ export default defineConfig({
         text: 'Ubuntu 系统设置相关',
         items: [
           { text: 'disable usb storage model', link: '/os/ubuntu/disable-usb-stroage-mod'},
-          { text: 'local package verison', link: '/os/ubuntu/lock-package-version'},
+          { text: 'lock package verison', link: '/os/ubuntu/lock-package-version'},
+          { text: 'download deb package', link: '/os/ubuntu/download-deb-package'},
         ]
       },
     ],

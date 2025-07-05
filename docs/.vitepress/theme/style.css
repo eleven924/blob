@@ -1,0 +1,56 @@
+/* 标签云容器 */
+.tag-cloud {
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px var(--vp-c-divider);
+}
+
+/* 单个标签项 */
+.tag-item {
+    width: 300px; /* 新增固定宽度 */
+    min-height: 80px; /* 最小高度保持统一 */
+    padding: 12px 16px;
+    background: var(--vp-c-bg);
+    border: 1px solid var(--vp-c-divider);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    overflow: hidden; /* 防止内容溢出 */
+    text-overflow: ellipsis; /* 文字过长显示省略号 */
+    white-space: nowrap; /* 禁止文字换行 */
+}
+
+.tag-item:hover {
+  transform: translateX(4px);
+  box-shadow: 2px 2px 8px var(--vp-c-divider);
+}
+
+/* 文章列表 */
+.post-list {
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 8px 0 0;
+}
+
+.post-item {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.post-item::before {
+  content: "•";
+  color: var(--vp-c-brand);
+  position: absolute;
+  left: 0;
+}
+
+.post-link {
+  color: var(--vp-c-text-1);
+  transition: color 0.2s;
+}
+
+.post-link:hover {
+  color: var(--vp-c-brand);
+}
