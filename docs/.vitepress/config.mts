@@ -39,6 +39,14 @@ export default defineConfig({
           { text: '通过go语言学习测试驱动开发', link: '/golang/test/learn-go-with-test' },
           // { text: 'Runtime API Examples', link: '/api-examples' }
         ]
+      },
+      {
+        text: 'Other',
+        items: [
+          { text: 'windows 下 goland 使用 *_linux.go 代码', link: '/golang/others/goland-use-linuxdep-on-win' },
+          { text: 'goland-remote-dev', link: '/golang/others/goland-remote-dev' },
+          // { text: 'Runtime API Examples', link: '/api-examples' }
+        ]
       }
     ],
     "/cicd/":[
@@ -62,7 +70,17 @@ export default defineConfig({
       },
     ],
     // kubernetes
-        // os 相关
+    "/kubernetes/k8s":[
+      {
+        text: 'k8s',
+        items: [
+          { text: 'k8s 二进制部署', link: '/kubernetes/k8s/binary-installation'},
+          { text: 'ingress-nginx 的安装与使用', link: '/kubernetes/k8s/ingress-nginx-install'},
+          { text: 'k8s 1.26 版本使用 docker 作为运行时', link: '/kubernetes/k8s/k8s-with-docker'},
+          { text: '使用NFS作为K8S的持久化存储', link: '/kubernetes/k8s/nfs-install'},
+        ]
+      },
+    ],
     "/kubernetes/k3s":[
       {
         text: 'k3s',
@@ -71,7 +89,23 @@ export default defineConfig({
         ]
       },
     ],
-
+    "/kubernetes/kubebuilder":[
+      {
+        text: 'kubebuilder',
+        items: [
+          { text: 'kubebuilder 初步使用', link: '/kubernetes/kubebuilder/learn-kubebuilder'},
+          { text: 'kubebuilder usage issues', link: '/kubernetes/kubebuilder/usage-issues'},
+        ]
+      },
+    ],
+    "/kubernetes/controller-runtime":[
+      {
+        text: 'controller-runtime',
+        items: [
+          { text: 'ControllerReference or OwnerReference', link: '/kubernetes/controller-runtime/ControllerReference-OwnerReference'},
+        ]
+      },
+    ],
     "/others/":[
       {
         text: 'build blob',
@@ -85,6 +119,20 @@ export default defineConfig({
         items: [
           { text: 'git commands', link: '/others/git-command' },
           // { text: 'Runtime API Examples', link: '/api-examples' }
+        ]
+      },
+      {
+        text: 'gRPC',
+        items: [
+          { text: 'gRPC 简介', link: '/others/gRPC' },
+          { text: 'gRPC 初步学习', link: '/others/gRPC/grpc-learn' },
+          { text: 'proto buffer介绍', link: '/others/gRPC/proto-buffer' },
+        ]
+      },
+      {
+        text: 'linux-app',
+        items: [
+          { text: 'ntp服务', link: '/others/ntp' },
         ]
       }
     ]},

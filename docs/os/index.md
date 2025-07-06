@@ -9,5 +9,4 @@ features:
   - title: Ubuntu
     details: Ubuntu相关内容
     link: /os/ubuntu/disable-usb-stroage-mod
-
 ---

@@ -26,8 +26,12 @@ features:
   - title: kubernetes
     details: kubernetes 学习笔记
     link: /kubernetes
+  - title: kafka
+    details: kafka 学习笔记
+    link: /kafka
   - title: others
     details: 杂项笔记
     link: /others
+
 ---
 

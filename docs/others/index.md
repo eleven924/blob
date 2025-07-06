@@ -12,5 +12,10 @@ features:
   - title: git command
     details: git 常用命令组合汇总
     link: /others/git-command
-
+  - title: gRPC
+    details: gRPC 相关
+    link: /others/gRPC
+  - title: ntp
+    details: ntp 服务
+    link: /others/ntp
 ---
