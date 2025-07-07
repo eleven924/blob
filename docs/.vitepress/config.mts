@@ -45,6 +45,7 @@ export default defineConfig({
         items: [
           { text: 'windows 下 goland 使用 *_linux.go 代码', link: '/golang/others/goland-use-linuxdep-on-win' },
           { text: 'goland-remote-dev', link: '/golang/others/goland-remote-dev' },
+          { text: 'vscode 远程调试 golang 进程', link: '/golang/others/remote-debug-with-vscode' },
           // { text: 'Runtime API Examples', link: '/api-examples' }
         ]
       }
