@@ -77,6 +77,7 @@ export default defineConfig({
         items: [
           { text: 'k8s 二进制部署', link: '/kubernetes/k8s/binary-installation'},
           { text: 'ingress-nginx 的安装与使用', link: '/kubernetes/k8s/ingress-nginx-install'},
+          { text: 'Lease 分布式锁', link: '/kubernetes/k8s/lease-demo'},
           { text: 'k8s 1.26 版本使用 docker 作为运行时', link: '/kubernetes/k8s/k8s-with-docker'},
           { text: '使用NFS作为K8S的持久化存储', link: '/kubernetes/k8s/nfs-install'},
         ]
@@ -134,6 +135,12 @@ export default defineConfig({
         text: 'linux-app',
         items: [
           { text: 'ntp服务', link: '/others/ntp' },
+        ]
+      },
+      {
+        text: 'tools',
+        items: [
+          { text: '生成随机密码', link: '/others/tools/random-pwd' },
         ]
       }
     ]},

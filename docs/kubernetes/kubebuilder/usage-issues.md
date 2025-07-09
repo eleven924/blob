@@ -1,7 +1,7 @@
 ---
 title: "kubebuilder使用问题汇总"
 tags: ["kubebuilder"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 # kubebuilder使用问题汇总
 

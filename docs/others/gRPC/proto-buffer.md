@@ -1,6 +1,6 @@
 ---
 title: "proto-buffer"
-date: 2024-07-06
+date: 2025-07-06
 tags: ["gRPC"]
 ---
 # proto-buffer

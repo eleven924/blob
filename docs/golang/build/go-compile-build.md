@@ -1,7 +1,7 @@
 ---
 title: "CGO 与静态编译"
 tags: ["golang"]
-date: 2024-07-05
+date: 2025-07-05
 ---
 # CGO 与静态编译
 

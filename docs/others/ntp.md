@@ -1,7 +1,7 @@
 ---
 title: "ntp 服务"
 tags: ["linux-app"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 
 # ntp 服务

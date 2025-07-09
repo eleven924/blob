@@ -18,4 +18,7 @@ features:
   - title: ntp
     details: ntp 服务
     link: /others/ntp
+  - title: tools
+    details: 一些简单的代码块
+    link: /others/tools/random-pwd
 ---

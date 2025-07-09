@@ -1,7 +1,7 @@
 ---
 title: "ingress-nginx 的安装与使用"
 tags: ["k8s"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 # ingress-nginx 的安装与使用
 

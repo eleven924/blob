@@ -1,7 +1,7 @@
 ---
 title: "SetControllerReference or SetOwnerReference"
 tags: ["controller-runtime"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 # SetControllerReference or SetOwnerReference
 

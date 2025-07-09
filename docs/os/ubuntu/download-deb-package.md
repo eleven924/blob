@@ -1,7 +1,7 @@
 ---
 title: "ubuntu 下载deb包及其依赖"
 tags: ["ubuntu"]
-date: 2024-07-05
+date: 2025-07-05
 ---
 # ubuntu 下载deb包及其依赖
 

@@ -1,7 +1,7 @@
 ---
 title: "vscode 远程调试 golang 进程"
 tags: ["golang"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 # vscode 远程调试 golang 进程
 ## 安装 dlv 命令

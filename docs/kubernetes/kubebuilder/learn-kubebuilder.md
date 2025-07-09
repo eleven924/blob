@@ -1,7 +1,7 @@
 ---
 title: "kubebuilder初步使用"
 tags: ["kubebuilder"]
-date: 2024-07-06
+date: 2025-07-06
 ---
 
 > [快速入门 - The Kubebuilder Book (cloudnative.to)](https://cloudnative.to/kubebuilder/quick-start.html#创建一个项目)
