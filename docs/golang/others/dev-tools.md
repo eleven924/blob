@@ -1,6 +1,6 @@
 ---
 title: "Go 开发工具集"
-tags: ["golang"]
+tags: ["toolkit"]
 date: 2025-07-10
 ---
 

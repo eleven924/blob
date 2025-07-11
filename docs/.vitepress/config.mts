@@ -68,6 +68,7 @@ export default defineConfig({
           { text: 'disable usb storage model', link: '/os/ubuntu/disable-usb-stroage-mod'},
           { text: 'lock package verison', link: '/os/ubuntu/lock-package-version'},
           { text: 'download deb package', link: '/os/ubuntu/download-deb-package'},
+          { text: 'compile no depend tar command', link: '/os/ubuntu/compile-nodep-tar-command'},
         ]
       },
     ],
