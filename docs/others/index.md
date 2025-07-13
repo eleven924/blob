@@ -21,4 +21,7 @@ features:
   - title: tools
     details: 一些简单的代码块
     link: /others/tools/random-pwd
+  - title: 低代码平台
+    details: 低代码平台简介
+    link: /others/low-code-platform
 ---

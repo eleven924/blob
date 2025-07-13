@@ -144,6 +144,12 @@ export default defineConfig({
         items: [
           { text: '生成随机密码', link: '/others/tools/random-pwd' },
         ]
+      },
+      {
+        text: '低代码平台',
+        items: [
+          { text: '低代码平台介绍', link: '/others/low-code-platform' },
+        ]
       }
     ]},
 
