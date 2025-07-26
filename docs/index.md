@@ -17,6 +17,9 @@ features:
   - title: golang
     details: golang 相关笔记
     link: /golang
+  - title: java
+    details: java 相关笔记
+    link: /java
   - title: CI/CD
     details: 持续集成和持续部署相关笔记
     link: /cicd
