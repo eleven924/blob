@@ -69,6 +69,7 @@ export default defineConfig({
           { text: 'lock package verison', link: '/os/ubuntu/lock-package-version'},
           { text: 'download deb package', link: '/os/ubuntu/download-deb-package'},
           { text: 'compile no depend tar command', link: '/os/ubuntu/compile-nodep-tar-command'},
+          { text: 'exec command in backend', link: '/os/ubuntu/exec-command-in-backend'},
         ]
       },
     ],
