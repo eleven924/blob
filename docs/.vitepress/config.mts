@@ -70,6 +70,7 @@ export default defineConfig({
           { text: 'download deb package', link: '/os/ubuntu/download-deb-package'},
           { text: 'compile no depend tar command', link: '/os/ubuntu/compile-nodep-tar-command'},
           { text: 'exec command in backend', link: '/os/ubuntu/exec-command-in-backend'},
+          { text: 'install desktop', link: '/os/ubuntu/install-desktop-vncserver'},
         ]
       },
     ],
