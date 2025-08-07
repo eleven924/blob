@@ -35,6 +35,8 @@ features:
   - title: others
     details: 杂项笔记
     link: /others
-
+  - title: elasticsearch
+    details: elasticsearch 学习笔记
+    link: /elasticsearch
 ---
 

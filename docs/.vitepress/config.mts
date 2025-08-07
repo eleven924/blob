@@ -112,6 +112,17 @@ export default defineConfig({
         ]
       },
     ],
+    // elasticsearch started
+    "/elasticsearch/base-usage/":[
+      {
+        text: 'elasticsearch base usage',
+        items: [
+          { text: '写在开头', link: '/elasticsearch/base-usage/beginning' },
+          { text: 'elasticsearch 基础命令示例', link: '/elasticsearch/base-usage/base-command' },
+        ]
+      }, 
+    ],
+    // elasticsearch end
     "/others/":[
       {
         text: 'build blob',
