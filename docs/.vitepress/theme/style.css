@@ -75,3 +75,15 @@ margin-top: 2rem;
   border-radius: 20px;
   transition: all 0.2s ease;
 }
+
+/* 图片缩放相关 */
+/* 图片缩放相关 */
+.medium-zoom-overlay {
+  z-index: 9998;
+}
+.medium-zoom-image {
+  z-index: 9999;
+}
+.medium-zoom-image:active {
+  cursor: grabbing;
+}

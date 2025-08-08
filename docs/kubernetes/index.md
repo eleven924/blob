@@ -18,4 +18,7 @@ features:
   - title: controller-runtime
     details: controller-runtime 相关内容
     link: /kubernetes/controller-runtime/ControllerReference-OwnerReference
+  - title: kubevirt
+    details: kubevirt 相关内容
+    link: /kubernetes/kubevirt/vm-snapshot-restore
 ---

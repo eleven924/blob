@@ -136,8 +136,40 @@ jobs:
 2. 本地删除 package-lock.json 文件, 执行 `npm install` 重新生成.
 
 
+## 3. vitePress 配置图片缩放设置
+1. 创建 `.vitepress/theme/index.js` 文件，并添加以下内容：
+
+```js
+import './style.css'
+
+import DefaultTheme from 'vitepress/theme';
+import { onMounted } from 'vue';
+import mediumZoom from 'medium-zoom';
 
 
+export default {
+  ...DefaultTheme,
+  setup() {
+    onMounted(() => {
+      // 全局图片缩放，如果图片添加了 not-zoom 类名，则不会缩放， 比如： ！[image](image.png "image"){.not-zoom}
+      mediumZoom('img:not(.not-zoom)', { background: 'var(--vp-c-bg)' });
+      // 如果需要指定图片缩放，其他的不缩放，可以使用以下代码，比如： ！[image](image.png "image"){data-zoomable}
+      // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' });
+    });
+  },
+};
+```
 
+2. 在 `.vitepress/theme/style.css` 文件中添加以下内容：
+```css
+/* 图片缩放相关 */
+.medium-zoom-overlay {
+  z-index: 20;
+}
+
+.medium-zoom-image {
+  z-index: 21;
+}
+```
 
 

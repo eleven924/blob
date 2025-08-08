@@ -112,6 +112,14 @@ export default defineConfig({
         ]
       },
     ],
+    "/kubernetes/kubevirt":[
+      {
+        text: 'kubevirt',
+        items: [
+          { text: 'kubevirt vm 快照回滚', link: '/kubernetes/kubevirt/vm-snapshot-restore'},
+        ]
+      },
+    ],
     // elasticsearch started
     "/elasticsearch/base-usage/":[
       {

@@ -98,6 +98,7 @@ curl -X GET "localhost:9200/my_index/_count"
 ```
 
 ### 查询指定字段
+#### match查询
 ```bash
 curl -X GET "localhost:9200/my_index/_search" -H 'Content-Type: application/json' -d '
 {
@@ -108,4 +109,23 @@ curl -X GET "localhost:9200/my_index/_search" -H 'Content-Type: application/json
   }
 }'
 ```
+`match` 是单字段查询。 这个查询是查询title字段匹配 `"Core"` 或者 `"Java"` 的文档。如果需要匹配完整的字符串可以使用 `"operator": "and"` 如下 
+
+```bash
+curl -X GET "localhost:9200/my_index/_search" -H 'Content-Type: application/json' -d '
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "Core Java",
+        "operator": "and"
+      }
+    }
+  }
+}'
+```
+多个match之间可以用 `bool` 查询来连接.下发会有介绍
+#### multi_match查询
+
+
 ## 全文搜索
