@@ -172,7 +172,15 @@ export default defineConfig({
           { text: '低代码平台介绍', link: '/others/low-code-platform' },
         ]
       }
-    ]},
+    ],
+    "/database/":[
+      {
+        text: 'point',
+        items: [
+          { text: 'NULL值问题', link: '/database/point/null-value' },
+        ]
+      }
+    ],},
 
     // 可以设置外部连接地址
     // socialLinks: [

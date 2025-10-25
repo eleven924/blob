@@ -38,5 +38,8 @@ features:
   - title: elasticsearch
     details: elasticsearch 学习笔记
     link: /elasticsearch
+  - title: database
+    details: 数据库学习笔记
+    link: /database
 ---
 
