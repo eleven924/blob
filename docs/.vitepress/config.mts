@@ -120,6 +120,14 @@ export default defineConfig({
         ]
       },
     ],
+        "/kubernetes/docker":[
+      {
+        text: 'docker',
+        items: [
+          { text: 'docker 多架构构建', link: '/kubernetes/docker/docker-build'},
+        ]
+      },
+    ],
     // elasticsearch started
     "/elasticsearch/base-usage/":[
       {
