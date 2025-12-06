@@ -12,4 +12,7 @@ features:
   - title: useful tools
     details: linux 系统下比较好用的工具集
     link: /os/useful-tools-linux
+  - title: 清理进程占用文件
+    details: linux 系统下清理进程占用文件
+    link: /os/clean-process-occupied-file
 ---
