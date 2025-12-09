@@ -41,5 +41,8 @@ features:
   - title: database
     details: 数据库学习笔记
     link: /database
+  - title: ai
+    details: 人工智能学习笔记
+    link: /ai
 ---
 

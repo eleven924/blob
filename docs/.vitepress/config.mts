@@ -188,8 +188,16 @@ export default defineConfig({
           { text: 'NULL值问题', link: '/database/point/null-value' },
         ]
       }
+    ],
+    "/ai/langchain/":[
+      {
+        text: 'LangChain 学习',
+        items: [
+          { text: 'LangChain 基础', link: '/ai/langchain/index' },
+          { text: '7天 LangChain 实战学习计划表', link: '/ai/langchain/7days-learn-plan' },
+        ]
+      }
     ],},
-
     // 可以设置外部连接地址
     // socialLinks: [
     //   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
