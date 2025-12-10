@@ -58,17 +58,16 @@ EOF
 
 <dependencies>
     <!-- LangChain4j 核心 -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j</artifactId>
-        <version>0.34.0</version> <!-- 建议使用最新版本 -->
-    </dependency>
-    <!-- OpenAI 集成 -->
-    <dependency>
-        <groupId>dev.langchain4j</groupId>
-        <artifactId>langchain4j-open-ai</artifactId>
-        <version>0.34.0</version>
-    </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai</artifactId>
+            <version>1.0.0-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+            <version>1.0.0-beta3</version>
+        </dependency>
     <!-- Spring Boot 自动配置 -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -123,35 +122,40 @@ print(response.content)
 LangChain4j 版：复刻上述逻辑（Java 面向对象风格）
 
 ```java
+package com.example.langchainpricate;
 
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LangChain4jDemoApplication implements CommandLineRunner {
+public class langChainPricateApplication implements CommandLineRunner {
 
-    @Autowired
-    private ChatLanguageModel chatLanguageModel; // Spring 自动注入（基于配置文件）
+    // 官方示例：https://docs.langchain4j.info/get-started
+    OpenAiChatModel model = OpenAiChatModel.builder()
+            .baseUrl("http://langchain4j.dev/demo/openai/v1")
+            .apiKey("demo")
+            .modelName("gpt-4o-mini")
+            .build();
 
     public static void main(String[] args) {
-        SpringApplication.run(LangChain4jDemoApplication.class, args);
+        SpringApplication.run(langChainPricateApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
         // 1. 定义 Prompt 模板（动态参数用 String.format）
         String prompt = String.format(
-            "你是%s，回答不超过30字。问题：%s",
-            "Java后端开发助手",
-            "Spring Boot 自动配置原理是什么？"
+                "你是%s，回答尽量详细。问题：%s",
+                "Java后端开发助手",
+                "Spring Boot 自动配置原理是什么？"
         );
         // 2. 调用模型并输出
-        String response = chatLanguageModel.generate(prompt);
+        String response = model.chat(prompt);
         System.out.println("响应：" + response);
     }
+
 }
 ```
 
