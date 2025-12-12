@@ -4,23 +4,23 @@ date: 2025-12-09
 tags: ["LangChain"]
 
 ---
+# 7天 LangChain（JAVA） 实战学习计划表
 
 ::: warning
 ⚠️ 文档由 AI 生成，尚未经过人工校对。请谨慎参考，如有疑问建议进一步验证。
 :::
 
-
 ## 核心目标
 
-从「环境搭建」到「完整RAG场景落地」，兼顾 Python 版（快速验证）与 LangChain4j（Java 生产适配），聚焦 **企业级实用功能**（RAG、结构化输出、生态集成），避免冗余理论，每天产出可运行代码/项目。
+从「环境搭建」到「完整RAG场景落地」，聚焦 **企业级实用功能**（RAG、结构化输出、生态集成），避免冗余理论，每天产出可运行代码/项目。
 
 ### 前置准备
 
-1. 工具：IDE（IntelliJ IDEA/VS Code）、Maven/Gradle（Java）、Python 3.8+、Git
+1. 工具：IDE（IntelliJ IDEA/VS Code）、Maven/Gradle（Java）、Git
 
 2. 密钥：OpenAI API Key（或 Azure OpenAI、通义千问 API，需对应调整依赖）
 
-3. 资料：LangChain 官网（https://python.langchain.com/）、LangChain4j 文档（https://langchain4j.dev/）
+3. 资料：LangChain4j 文档（https://langchain4j.dev/）
 
 ---
 
@@ -30,25 +30,11 @@ tags: ["LangChain"]
 
 #### 目标
 
-- 跑通 Python/LangChain4j 双环境的大模型调用
+- 跑通 LangChain4j 双环境的大模型调用
 
 - 用 10 行代码理解 LangChain 核心组件（PromptTemplate、LLM、Chain）
 
 #### 实操任务
-
-##### 1. Python 环境搭建（1小时）
-
-```bash
-
-# 创建虚拟环境
-python -m venv langchain-env && source langchain-env/bin/activate  # Linux/Mac
-# 安装依赖
-pip install langchain langchain-openai python-dotenv pyyaml
-# 配置 .env 文件
-cat > .env << EOF
-OPENAI_API_KEY=你的密钥
-EOF
-```
 
 ##### 2. LangChain4j 环境搭建（1小时）
 
@@ -57,12 +43,19 @@ EOF
 ```xml
 
 <dependencies>
-    <!-- LangChain4j 核心 -->
+    <!--openai调用-->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-open-ai</artifactId>
             <version>1.0.0-beta3</version>
         </dependency>
+    <!--智谱ai调用-->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-community-zhipu-ai</artifactId>
+            <version>1.0.0-beta3</version>
+        </dependency>
+    <!-- LangChain4j 核心 -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j</artifactId>
@@ -81,45 +74,9 @@ EOF
     </dependency>
 </dependencies>
 ```
-
-配置 `application.yml`：
-
-```yaml
-
-langchain4j:
-  open-ai:
-    api-key: 你的密钥
-    model-name: gpt-3.5-turbo
-    temperature: 0.7
-```
-
 ##### 3. 核心组件实战（2小时）
 
-Python 版：实现「Prompt 模板 + 大模型调用 + Chain 串联」
-
-```python
-
-from langchain_openai import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-# 1. 初始化 LLM
-llm = ChatOpenAI(model="gpt-3.5-turbo", api_key=os.getenv("OPENAI_API_KEY"))
-# 2. 定义 Prompt 模板（支持动态参数）
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "你是{role}，回答不超过30字"),
-    ("user", "{question}")
-])
-# 3. 构建 Chain（Prompt → LLM）
-chain = prompt | llm
-# 4. 执行并输出
-response = chain.invoke({"role": "Java后端开发助手", "question": "Spring Boot 自动配置原理是什么？"})
-print(response.content)
-```
-
-LangChain4j 版：复刻上述逻辑（Java 面向对象风格）
+大模型调用 
 
 ```java
 package com.example.langchainpricate;
@@ -133,6 +90,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class langChainPricateApplication implements CommandLineRunner {
 
     // 官方示例：https://docs.langchain4j.info/get-started
+    // 这里使用的是官方测试的api，可以参考官方示例使用其他api
     OpenAiChatModel model = OpenAiChatModel.builder()
             .baseUrl("http://langchain4j.dev/demo/openai/v1")
             .apiKey("demo")
@@ -147,7 +105,7 @@ public class langChainPricateApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // 1. 定义 Prompt 模板（动态参数用 String.format）
         String prompt = String.format(
-                "你是%s，回答尽量详细。问题：%s",
+                "你是%s，回答尽量简单，50字以内。问题：%s",
                 "Java后端开发助手",
                 "Spring Boot 自动配置原理是什么？"
         );
@@ -159,11 +117,7 @@ public class langChainPricateApplication implements CommandLineRunner {
 }
 ```
 
-##### 4. 总结
-
-记录双环境的差异（Python 简洁、Java 强类型+Spring 集成），理解「Chain 是核心执行单元」。
-
----
+--- 
 
 ### Day 2：核心功能 - Prompt 工程 + 输出结构化
 
@@ -179,48 +133,77 @@ public class langChainPricateApplication implements CommandLineRunner {
 
 优化方向：明确角色、限定格式、补充上下文
 
-Python 示例（生成 Java 接口代码）：
-
-```python
-
-prompt = ChatPromptTemplate.from_messages([
-    ("system", """
-    你是资深 Java 工程师，遵循 RESTful 规范，生成接口代码：
-    1. 使用 Spring Boot 注解（@RestController、@GetMapping 等）
-    2. 方法参数需加校验注解（@NotNull、@Size）
-    3. 返回统一响应体 Result<T>（包含 code、msg、data）
-    """),
-    ("user", "生成用户查询接口，根据用户ID查询用户信息（包含id、name、age、email）")
-])
-chain = prompt | llm
-print(chain.invoke({}).content)
-```
-
 LangChain4j 版：用 `PromptTemplate` 类优化（支持模板文件）
 
 ```java
+package com.example.langchainpricate;
 
-import dev.langchain4j.prompt.PromptTemplate;
+import dev.langchain4j.community.model.zhipu.ZhipuAiChatModel;
+import dev.langchain4j.model.input.Prompt;
+import dev.langchain4j.model.input.PromptTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.Duration;
 import java.util.Map;
 
-// 1. 从字符串构建模板
-PromptTemplate promptTemplate = PromptTemplate.from(
-    "你是资深 Java 工程师，遵循 RESTful 规范，生成接口代码：\n" +
-    "1. 使用 Spring Boot 注解（@RestController、@GetMapping 等）\n" +
-    "2. 方法参数需加校验注解（@NotNull、@Size）\n" +
-    "3. 返回统一响应体 Result<T>（包含 code、msg、data）\n" +
-    "生成{interface_type}接口，{business_requirement}"
-);
+/**
+ * 使用PromptTemplate来调用模型
+ */
+@SpringBootApplication
+public class langChainPricateApplication implements CommandLineRunner {
 
-// 2. 填充模板参数
-String prompt = promptTemplate.apply(Map.of(
-    "interface_type", "用户查询",
-    "business_requirement", "根据用户ID查询用户信息（包含id、name、age、email）"
-));
+    /**
+     * 在application.yml中配置api-key和model-name
+     */
+    @Value("${langchain4j.api-key}")
+    private String apiKey;
 
-// 3. 调用模型
-String response = chatLanguageModel.generate(prompt);
-System.out.println("生成的接口代码：\n" + response);
+    @Value("${langchain4j.model-name}")
+    private String modelName;
+
+    public static void main(String[] args) {
+        SpringApplication.run(langChainPricateApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        ZhipuAiChatModel chatModel = ZhipuAiChatModel
+                .builder()
+                .apiKey(apiKey)
+                .model(modelName)
+                .callTimeout(Duration.ofSeconds(60))
+                .connectTimeout(Duration.ofSeconds(60))
+                .writeTimeout(Duration.ofSeconds(60))
+                .readTimeout(Duration.ofSeconds(60))
+                .maxToken(10000)
+                .build();
+
+        // 创建模板, 注意是双括号设置模板参数
+        PromptTemplate template = PromptTemplate.from("你是资深 Java 工程师，遵循 RESTful 规范，生成接口代码：\n" +
+                "1. 使用 Spring Boot 注解（@RestController、@GetMapping 等）\n" +
+                "2. 方法参数需加校验注解（@NotNull、@Size）\n" +
+                "3. 返回统一响应体 Result<T>（包含 code、msg、data）\n" +
+                "生成{{interface_type}}接口，{{business_requirement}}");
+
+        // 应用模板生成Prompt
+        Prompt apply = template.apply(Map.of(
+                "interface_type", "用户查询",
+                "business_requirement", "根据用户ID查询用户信息（包含id、name、age、email）"
+        ));
+        
+
+        String res = chatModel.chat(apply.text());
+
+        System.out.println("===>chat:");
+        System.out.println(apply.text());
+        System.out.println("===>res:");
+        System.out.println(res);
+    }
+
+}
 
 // 进阶：从资源文件加载模板（推荐，便于维护）
 // PromptTemplate templateFromFile = PromptTemplate.fromResource("templates/java_interface_template.txt");
@@ -229,35 +212,7 @@ System.out.println("生成的接口代码：\n" + response);
 
 ##### 2. 结构化输出实战（2.5小时）
 
-需求：让大模型输出用户信息 JSON，Python 解析为字典，Java 解析为实体类
-
-Python 版（用 PydanticOutputParser）：
-
-```python
-
-from langchain.output_parsers import PydanticOutputParser
-from pydantic import BaseModel, Field
-from typing import Optional
-
-# 1. 定义结构化模型
-class UserInfo(BaseModel):
-    id: int = Field(description="用户ID")
-    name: str = Field(description="用户名")
-    age: Optional[int] = Field(description="年龄，可选")
-    email: str = Field(description="邮箱")
-
-# 2. 初始化解析器
-parser = PydanticOutputParser(pydantic_object=UserInfo)
-# 3. 构建 Prompt（加入解析器格式说明）
-prompt = ChatPromptTemplate.from_messages([
-    ("system", f"按以下格式输出JSON：{parser.get_format_instructions()}"),
-    ("user", "提取用户信息：ID是1001，姓名张三，邮箱zhangsan@xxx.com")
-])
-# 4. 执行 Chain 并解析
-chain = prompt | llm | parser
-user_info = chain.invoke({})
-print(user_info.id, user_info.name, user_info.email)  # 结构化数据可直接访问
-```
+需求：让大模型输出用户信息 JSON，Java 解析为实体类
 
 LangChain4j 版（用 JsonOutputParser + Java 实体）：
 

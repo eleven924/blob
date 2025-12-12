@@ -193,8 +193,8 @@ export default defineConfig({
       {
         text: 'LangChain 学习',
         items: [
-          { text: 'LangChain 基础', link: '/ai/langchain/index' },
-          { text: '7天 LangChain 实战学习计划表', link: '/ai/langchain/7days-learn-plan' },
+          { text: 'LangChain 基础', link: '/ai/langchain/01-langchain-basics' },
+          { text: '7天 LangChain（JAVA） 实战学习计划表', link: '/ai/langchain/02-7days-learn-plan' },
         ]
       }
     ],},
