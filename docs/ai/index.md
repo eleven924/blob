@@ -8,5 +8,5 @@ hero:
 features:
   - title: LangChain 
     details: LangChain 学习笔记
-    link: /ai/langchain
+    link: /ai/langchain/01-langchain-basics
 ---

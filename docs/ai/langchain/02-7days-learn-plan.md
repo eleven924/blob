@@ -178,7 +178,6 @@ public class langChainPricateApplication implements CommandLineRunner {
                 .connectTimeout(Duration.ofSeconds(60))
                 .writeTimeout(Duration.ofSeconds(60))
                 .readTimeout(Duration.ofSeconds(60))
-                .maxToken(10000)
                 .build();
 
         // 创建模板, 注意是双括号设置模板参数
@@ -209,6 +208,10 @@ public class langChainPricateApplication implements CommandLineRunner {
 // PromptTemplate templateFromFile = PromptTemplate.fromResource("templates/java_interface_template.txt");
 // String filePrompt = templateFromFile.apply(Map.of("interface_type", "用户查询"));
 ```
+::: warning
+响应如果发现有被阶段，这里可以通过配置 maxToken 来控制响应长度。  
+创建chatModel时如下（当然需要正常配置api-key和model-name等）： ZhipuAiChatModel.builder().maxToken(10000).build();
+:::
 
 ##### 2. 结构化输出实战（2.5小时）
 
