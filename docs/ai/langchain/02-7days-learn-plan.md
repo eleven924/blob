@@ -208,53 +208,105 @@ public class langChainPricateApplication implements CommandLineRunner {
 // PromptTemplate templateFromFile = PromptTemplate.fromResource("templates/java_interface_template.txt");
 // String filePrompt = templateFromFile.apply(Map.of("interface_type", "用户查询"));
 ```
-::: warning
+:::tip
 响应如果发现有被阶段，这里可以通过配置 maxToken 来控制响应长度。  
 创建chatModel时如下（当然需要正常配置api-key和model-name等）： ZhipuAiChatModel.builder().maxToken(10000).build();
 :::
 
 ##### 2. 结构化输出实战（2.5小时）
 
-需求：让大模型输出用户信息 JSON，Java 解析为实体类
+需求：让大模型根据用户输入的信息 返回JSON格式的内容，Java 解析为record类
 
-LangChain4j 版（用 JsonOutputParser + Java 实体）：
+LangChain4j 版（用 responseFormat + Java record）：
+
+[官方链接](https://docs.langchain4j.info/tutorials/structured-outputs)
 
 ```java
+package com.example.langchainpricate.practice;
 
-import dev.langchain4j.output.parser.JsonOutputParser;
-import dev.langchain4j.prompt.PromptTemplate;
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.request.ChatRequest;
+import dev.langchain4j.model.chat.request.ResponseFormat;
+import dev.langchain4j.model.chat.request.ResponseFormatType;
+import dev.langchain4j.model.chat.request.json.JsonObjectSchema;
+import dev.langchain4j.model.chat.request.json.JsonSchema;
+import dev.langchain4j.model.chat.response.ChatResponse;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import org.springframework.stereotype.Service;
 
-// 1. 定义 Java 实体类
-@lombok.Data
-public class UserInfo {
-    private Integer id;
-    private String name;
-    private Integer age;
-    private String email;
-}
 
-// 2. 实战代码
-public void structuredOutputDemo() {
-    // 解析器
-    JsonOutputParser<UserInfo> parser = JsonOutputParser.jsonOutputParser(UserInfo.class);
-    // Prompt 模板（包含格式说明）
-    PromptTemplate promptTemplate = PromptTemplate.from(
-        "按以下格式输出JSON：{format_instructions}\n提取用户信息：ID是1001，姓名张三，邮箱zhangsan@xxx.com"
-    );
-    String prompt = promptTemplate.apply(Map.of(
-        "format_instructions", parser.getFormatInstructions()
-    ));
-    // 调用模型 + 解析
-    String response = chatLanguageModel.generate(prompt);
-    UserInfo userInfo = parser.parse(response);
-    System.out.println(userInfo.getName()); // 结构化数据
+@Service
+public class PricateStructOut01 implements pricate {
+
+    @Override
+    public void exec(String modelName, String apiKey) throws JsonProcessingException {
+//      创建chat模型
+
+        OpenAiChatModel chatModel = OpenAiChatModel.builder()
+                .baseUrl("http://langchain4j.dev/demo/openai/v1")
+                .apiKey("demo")
+                .modelName("gpt-4o-mini")
+                .build();
+
+
+        record Person(String name, int age, double height, boolean married) {
+        }
+
+        // 创建responseFormat
+        JsonSchema schema = JsonSchema.builder()
+                .name("Person")
+                .rootElement(
+                        JsonObjectSchema.builder()
+                                .addStringProperty("name")
+                                .addIntegerProperty("age")
+                                .addNumberProperty("height")
+                                .addBooleanProperty("married")
+                                .required("name", "age", "height", "married")
+                                .build())
+
+                .build();
+
+        ResponseFormat responseFormat = ResponseFormat.builder()
+                .type(ResponseFormatType.JSON)
+                .jsonSchema(schema)
+                .build();
+
+        // 创建prompt
+        UserMessage message = UserMessage.from("""
+                John is 42 years old and lives an independent life.
+                He stands 1.75 meters tall and carries himself with confidence.
+                Currently unmarried, he enjoys the freedom to focus on his personal goals and interests.
+                """);
+
+        // 创建chatRequest
+        ChatRequest chatRequest = ChatRequest.builder().messages(message).responseFormat(responseFormat).build();
+
+        ChatResponse chatResponse = chatModel.chat(chatRequest);
+
+        String text = chatResponse.aiMessage().text();
+
+        System.out.println("===>text:");
+        System.out.println(text);
+
+        Person person = new ObjectMapper().readValue(text, Person.class);
+
+        System.out.println("===>Person:");
+        System.out.println(person);
+
+    }
 }
 ```
+:::warning
+这种Json Schema 的解析还有一些限制，所以我没有使用智谱的模型做验证。
+- 它仅适用于支持的 Azure OpenAI、Google AI Gemini、Mistral、Ollama 和 OpenAI 模型。
+- 它在流式模式下不工作。
+- 对于 Google AI Gemini、Mistral 和 Ollama，JSON Schema 可以通过 responseSchema(...) 在创建/构建模型时指定。
+- JsonReferenceSchema 和 JsonAnyOfSchema 目前仅由 Azure OpenAI、Mistral 和 OpenAI 支持。
+:::
 
-##### 3. 总结
-
-结构化输出是业务开发的关键，核心是「Prompt 约束格式 + 解析器转换」。
+当然[官方](https://docs.langchain4j.info/tutorials/structured-outputs)还给出了使用 提示词+Json 模式.
 
 ---
 
