@@ -50,8 +50,11 @@ export default defineConfig({
           { text: 'Go 开发工具集', link: '/golang/others/dev-tools' },
           // { text: 'Runtime API Examples', link: '/api-examples' }
         ]
-      },{
-        text: 'go-zero',
+      },
+    ],
+    "/golang/go-zero/":[
+      {
+        text: 'start',
         items: [
           { text: 'demo:api调用rpc服务', link: '/golang/go-zero/api-rpc-example' },
         ]
