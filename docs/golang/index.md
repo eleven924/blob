@@ -12,5 +12,5 @@ hero:
 features:
   - title: go-zero
     details: go-zero相关内容
-    link: /golang/go-zero/api-rpc-example.md
+    link: /golang/go-zero/1-api-rpc-example
 ---

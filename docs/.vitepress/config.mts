@@ -60,7 +60,7 @@ export default defineConfig({
       {
         text: 'start',
         items: [
-          { text: 'demo:api调用rpc服务', link: '/golang/go-zero/api-rpc-example' },
+          { text: 'demo:api调用rpc服务', link: '/golang/go-zero/1-api-rpc-example' },
         ]
       }
     ],
