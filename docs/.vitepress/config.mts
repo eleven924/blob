@@ -28,17 +28,21 @@ export default defineConfig({
     sidebar: {
       "/golang/":[
       {
+        text: 'Golang Core Chapter',
+        items: [
+          { text: 'Go vs Java IO阻塞全场景过程总结', link: '/golang/go-core-chapter/go-gpm-status-with-io' },
+        ]
+      }, 
+      {
         text: 'Golang Build',
         items: [
           { text: 'golang 编译二进制文件', link: '/golang/build/go-compile-build' },
-          // { text: 'Runtime API Examples', link: '/api-examples' }
         ]
       },      
       {
         text: 'Golang Test',
         items: [
           { text: '通过go语言学习测试驱动开发', link: '/golang/test/learn-go-with-test' },
-          // { text: 'Runtime API Examples', link: '/api-examples' }
         ]
       },
       {
