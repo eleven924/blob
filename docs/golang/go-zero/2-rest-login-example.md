@@ -12,7 +12,7 @@ date: 2026-06-25
 
 已安装： [go](https://go-zero.dev/zh-cn/getting-started/installation/golang/), [goctl](https://go-zero.dev/zh-cn/getting-started/installation/goctl/), [protoc](https://go-zero.dev/zh-cn/getting-started/installation/protoc/)，etcd
 
-已存在一个api项目，可以参考 [[1-api-rpc-example]] 创建。
+已存在一个api项目，可以参考 [api-rpc-example](./1-api-rpc-example) 创建。
 
 
 ## user.api 接口定义文件
@@ -192,8 +192,8 @@ func (l *UserInfoLogic) UserInfo() (resp *types.UserInfoResp, err error) {
 
 ## 流程说明
 
-go-zero 会默认启用 jwt 中间件，会将 api 定义文件中设置的 `jwt: JwtAuth` 对应的config配置来做校验，我们只需要处理登录成功返回Token，并且完成Token刷新接口就可以了。
-可以看到 goctl 生成的代码已经使用 jwt 插件，并且使用了 `JwtAuth.AccessSecret` 作为密钥。
+- go-zero 会默认启用 jwt 中间件，会将 api 定义文件中设置的 `jwt: JwtAuth` 对应的config配置来做校验，我们只需要处理登录成功返回Token，并且完成Token刷新接口就可以了。  
+- 可以看到 goctl 生成的代码已经使用 jwt 插件，并且使用了 `JwtAuth.AccessSecret` 作为密钥。 这个`AccessSecret`要注意在配置文件svc中都要保持一致。
 ```go
 	server.AddRoutes(
 		[]rest.Route{
